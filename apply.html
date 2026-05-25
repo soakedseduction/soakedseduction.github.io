@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="locked">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply — Soaked Seduction</title>
+  <meta name="description" content="Short application form. Starts a conversation. Does not guarantee a booking." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <script>
+    (function(){
+      try {
+        if (sessionStorage.getItem("ss_age_ok") === "1") {
+          document.documentElement.classList.remove("locked");
+        } else {
+          var here = (location.pathname.split("/").pop() || "") + location.search;
+          location.replace("index.html?return=" + encodeURIComponent(here));
+        }
+      } catch(e) {
+        document.documentElement.classList.remove("locked");
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" data-nav data-open="false">
+    <div class="container nav__inner">
+      <a href="home.html" class="nav__brand">
+        <img src="images/logo.PNG" alt="" />
+        <span>Soaked Seduction</span>
+      </a>
+      <button class="nav__toggle" data-nav-toggle aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experience.html">Shoot Experience</a></li>
+        <li><a href="portfolio.html">Sample Work</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="policies.html">Policies</a></li>
+        <li class="nav__cta"><a href="apply.html" class="btn btn--primary btn--sm" aria-current="page">Apply to Shoot</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="caustics" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow eyebrow--gold">Apply</span>
+      <h1>Apply to shoot.</h1>
+      <p>
+        The application starts a conversation. It does not guarantee a booking. Soaked
+        Seduction produces underwater adult content sold on Fansly, ManyVids, OnlyFans,
+        and similar — applicants must be comfortable with that. Rate, scope, travel, and
+        wardrobe are discussed before any date is held.
+      </p>
+    </div>
+  </section>
+
+  <!-- APPLICATION FORM -->
+  <section class="section">
+    <div class="container container--narrow">
+
+      <!--
+        =====================================================================
+        FORM BACKEND — wired to Google Forms
+        =====================================================================
+        Submissions POST silently to the Google Form below; responses land in
+        the linked Google Forms "Responses" tab and the linked Google Sheet,
+        with email notifications enabled in the form owner's Google account.
+
+        Hidden iframe trick:
+          - <form target="ss_apply_iframe"> posts to Google in the iframe so
+            the page does not navigate.
+          - The iframe's load event fires after Google accepts the POST; the
+            JS handler in js/main.js shows the "Thanks…" panel on that load.
+
+        IMPORTANT — when changing this form:
+          - Each <input>/<select>/<textarea> `name` attribute is a Google
+            Form question ID (entry.XXXXXXX). Don't rename them.
+          - Dropdown <option> text must match the Google Form options
+            character-for-character, or Google silently drops the value.
+          - If you add or remove a question in Google Forms, you must update
+            both the form action URL (form ID) AND the field names here.
+          - Pre-fill link technique to find new entry IDs: in the form
+            editor, ⋮ → "Get pre-filled link" → fill values → copy URL.
+        =====================================================================
+      -->
+      <iframe name="ss_apply_iframe" id="ss_apply_iframe"
+              style="display:none" tabindex="-1" aria-hidden="true"></iframe>
+
+      <form class="form" data-apply-form
+            action="https://docs.google.com/forms/d/e/1FAIpQLSfidd28WJ_4nhre9chIOJTdBCKK46vvLT9U1JMD_gmiQU9GSA/formResponse"
+            method="POST"
+            target="ss_apply_iframe"
+            novalidate>
+
+        <!-- Hidden fields Google Forms expects from its own form page; without
+             these, some forms silently reject anonymous direct POSTs. -->
+        <input type="hidden" name="fvv" value="1" />
+        <input type="hidden" name="pageHistory" value="0" />
+        <input type="hidden" name="fbzx" value="-1" />
+
+        <div class="form__success">
+          <strong>Thanks.</strong>
+          Your application was received. If it looks like a fit, we'll reach out from a
+          verifiable Soaked Seduction contact.
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="legalName">Legal name *</label>
+            <input id="legalName" name="entry.528384039" type="text" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="stageName">Stage name</label>
+            <input id="stageName" name="entry.1744537545" type="text" />
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="email">Email *</label>
+            <input id="email" name="entry.690112455" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="contact">Preferred contact method *</label>
+            <select id="contact" name="entry.1106244261" required>
+              <option value="">Select…</option>
+              <option>Email</option>
+              <option>Instagram DM</option>
+              <option>Text</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="location">Location (city / state)</label>
+            <input id="location" name="entry.533205375" type="text" autocomplete="address-level2" />
+          </div>
+          <div class="field">
+            <label for="portfolio">Public creator profile or portfolio</label>
+            <input id="portfolio" name="entry.739093381" type="text" placeholder="@handle, link, or site" />
+            <span class="field__hint">Instagram handle, link, Fansly / MV page, or personal site — any format works.</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="checkbox">
+            <input type="checkbox" name="entry.318693748" value="Yes, I confirm" required />
+            <span>I confirm that I am 18 years of age or older, and I can verify this with government-issued ID. *</span>
+          </label>
+        </div>
+
+        <div class="form__row">
+          <div class="field">
+            <label for="experience">Experience level</label>
+            <select id="experience" name="entry.443135865">
+              <option value="">Select…</option>
+              <option>New to professional shoots</option>
+              <option>Some experience (1-3 years)</option>
+              <option>Experienced</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="swimming">Swimming comfort level</label>
+            <select id="swimming" name="entry.1152785217">
+              <option value="">Select…</option>
+              <option>Not a confident swimmer</option>
+              <option>Comfortable in shallow water</option>
+              <option>Confident swimmer</option>
+              <option>Strong swimmer / lifeguard background</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="underwater">Underwater comfort level</label>
+          <select id="underwater" name="entry.110154471">
+            <option value="">Select…</option>
+            <option>Struggle to be underwater</option>
+            <option>Some experience opening eyes / posing underwater</option>
+            <option>Comfortable holding breath for short takes</option>
+            <option>Experienced underwater performer</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="content">Content levels open to discussing</label>
+          <textarea id="content" name="entry.40549749" placeholder="Solo / B/G / G/G / B/G/G — what you've done, what you're open to, and anything you already know is off the table for you. Photo, video, both. Nothing is locked in by what you write here."></textarea>
+          <span class="field__hint">Plain language is fine. Specifics get confirmed during booking, not here.</span>
+        </div>
+
+        <div class="field">
+          <label for="availability">Availability</label>
+          <textarea id="availability" name="entry.629054518" placeholder="General availability windows over the next few weeks or months."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="notes">Notes or questions</label>
+          <textarea id="notes" name="entry.1963865926" placeholder="Anything you'd like us to know, or questions you'd like answered before scheduling."></textarea>
+        </div>
+
+        <div class="form__notice">
+          <strong style="color:var(--siren-navy);">What happens next.</strong>
+          Applications are read personally. If it looks like a fit, you'll get a reply from
+          a verifiable Soaked Seduction contact. Rate, scope, and logistics are talked
+          through before any date is held.
+        </div>
+
+        <div class="form__footer">
+          <button type="submit" class="btn btn--gold btn--lg">Submit Application</button>
+          <a href="policies.html" class="btn btn--ghost btn--sm">Read Policies</a>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="home.html" class="nav__brand" style="color:var(--pearl-white); margin-bottom:1rem;">
+            <img src="images/logo.PNG" alt="" style="height:34px;" />
+            <span>Soaked Seduction</span>
+          </a>
+          <p>Paid underwater photo and video shoots in a private heated pool.</p>
+        </div>
+        <div>
+          <h4>Site</h4>
+          <ul class="footer__links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="experience.html">Shoot Experience</a></li>
+            <li><a href="portfolio.html">Sample Work</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li><a href="policies.html">Policies</a></li>
+            <li><a href="apply.html">Apply</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>External</h4>
+          <ul class="footer__links footer__external">
+            <li><a href="https://www.instagram.com/soaked_seduction" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://fansly.com/soakedseduction/t2" target="_blank" rel="noopener">Fansly</a></li>
+            <li><a href="https://soakedseduction.manyvids.com/" target="_blank" rel="noopener">ManyVids</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer__disclaimer">
+        External platforms may contain adult content. This site is for talent information and applications.
+      </p>
+      <div class="footer__bottom">
+        <span>© <span id="yr"></span> Soaked Seduction. All rights reserved.</span>
+        <span>Underwater Shoots · 18+</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script src="js/main.js"></script>
+</body>
+</html>

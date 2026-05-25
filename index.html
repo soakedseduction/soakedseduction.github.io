@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soaked Seduction — Entry</title>
+  <meta name="description" content="Professional underwater photo and video production. Talent information and collaboration portal." />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="splash">
+    <div class="splash__inner">
+      <img src="images/logo.PNG" alt="Soaked Seduction" class="splash__logo" />
+      <div class="splash__rule"></div>
+      <p class="splash__statement">
+        This website contains artistic and mature-themed underwater imagery intended for adults 18+.
+      </p>
+      <p class="splash__note">
+        This website is primarily intended as a professional talent information and collaboration portal.
+      </p>
+      <div class="splash__ctas">
+        <button id="enterBtn" class="btn btn--gold btn--lg" type="button">Enter Site</button>
+        <a href="https://www.google.com" rel="noopener" class="btn btn--ghost-light btn--lg">Leave</a>
+      </div>
+    </div>
+    <div class="splash__footer">Soaked Seduction · Underwater Production</div>
+  </main>
+
+  <script>
+    // Safe-list of pages that ?return= may point to. Anything else falls back to home.
+    var ALLOWED_RETURNS = ['home.html','about.html','experience.html','portfolio.html','testimonials.html','policies.html','apply.html'];
+    function getReturnTarget() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var r = params.get('return');
+        if (!r) return 'home.html';
+        // strip query/hash, normalize
+        var path = r.split('?')[0].split('#')[0];
+        return ALLOWED_RETURNS.indexOf(path) !== -1 ? r : 'home.html';
+      } catch (e) { return 'home.html'; }
+    }
+    document.getElementById('enterBtn').addEventListener('click', function () {
+      try { sessionStorage.setItem('ss_age_ok', '1'); } catch (e) {}
+      window.location.href = getReturnTarget();
+    });
+  </script>
+</body>
+</html>
