@@ -965,6 +965,97 @@ p  { margin: 0 0 1em; color: var(--ink-soft); }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* ---------- COMMUNITY TOAST (Reddit invite) ---------- */
+.community-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 70;
+  width: min(340px, calc(100vw - 2rem));
+  background: var(--pearl-white);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 16px 50px -16px rgba(1, 37, 75, 0.30);
+  padding: 1.1rem 1.25rem 1.15rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 360ms var(--ease), transform 360ms var(--ease);
+  pointer-events: none;
+}
+.community-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.community-toast.is-leaving {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+.community-toast__close {
+  position: absolute;
+  top: 0.55rem; right: 0.55rem;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--slate-blue);
+  background: transparent;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.community-toast__close:hover {
+  background: rgba(1, 37, 75, 0.06);
+  color: var(--siren-navy);
+}
+.community-toast__close svg { width: 14px; height: 14px; }
+.community-toast__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--siren-gold);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+.community-toast__title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--siren-navy);
+  line-height: 1.15;
+  margin: 0 0 0.35rem;
+}
+.community-toast__body {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  margin: 0 0 0.85rem;
+}
+.community-toast__cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--siren-navy);
+  letter-spacing: 0.02em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--siren-gold);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.community-toast__cta:hover {
+  color: var(--teal-shadow);
+  border-color: var(--siren-navy);
+}
+.community-toast__cta svg {
+  width: 14px; height: 14px;
+  transition: transform var(--dur) var(--ease);
+}
+.community-toast__cta:hover svg { transform: translate(2px, -2px); }
+@media (max-width: 560px) {
+  .community-toast {
+    bottom: 1rem; right: 1rem; left: 1rem; width: auto;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

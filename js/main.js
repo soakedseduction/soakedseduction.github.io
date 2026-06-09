@@ -116,6 +116,57 @@
       updateBtns();
     }
 
+    // ---- Community toast (Reddit invite) ----
+    // Slides in after a delay, dismissable, remembers dismissal for the session.
+    // Doesn't appear on the apply page (where users are mid-task) or the splash.
+    (function () {
+      var path = (window.location.pathname.split('/').pop() || '').toLowerCase();
+      var skipOn = ['index.html', 'apply.html', ''];
+      if (skipOn.indexOf(path) !== -1) return;
+      try {
+        if (sessionStorage.getItem('ss_toast_dismissed') === '1') return;
+      } catch (e) {}
+
+      var toast = document.createElement('aside');
+      toast.className = 'community-toast';
+      toast.setAttribute('role', 'complementary');
+      toast.setAttribute('aria-label', 'Reddit community invite');
+      toast.innerHTML =
+        '<button class="community-toast__close" type="button" aria-label="Dismiss">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>' +
+          '</svg>' +
+        '</button>' +
+        '<span class="community-toast__eyebrow">Community</span>' +
+        '<h4 class="community-toast__title">Join the conversation.</h4>' +
+        '<p class="community-toast__body">An underwater creator community on Reddit — talk shop, share work, meet other creators in the space.</p>' +
+        '<a class="community-toast__cta" href="https://www.reddit.com/r/UnderwaterCreatorsGW/" target="_blank" rel="noopener">' +
+          'Open r/UnderwaterCreatorsGW' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/>' +
+          '</svg>' +
+        '</a>';
+      document.body.appendChild(toast);
+
+      function remember() {
+        try { sessionStorage.setItem('ss_toast_dismissed', '1'); } catch (e) {}
+      }
+      function dismiss() {
+        toast.classList.remove('is-visible');
+        toast.classList.add('is-leaving');
+        remember();
+        setTimeout(function () {
+          if (toast && toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 400);
+      }
+      toast.querySelector('.community-toast__close').addEventListener('click', dismiss);
+      // Tapping the CTA also counts as engaged — remember so they don't see it again
+      toast.querySelector('.community-toast__cta').addEventListener('click', remember);
+
+      // Show after a short delay so it doesn't compete with the page intro
+      setTimeout(function () { toast.classList.add('is-visible'); }, 6000);
+    })();
+
     // ---- Lightweight gallery lightbox ----
     var gallery = document.querySelector('[data-gallery]');
     if (gallery) {
